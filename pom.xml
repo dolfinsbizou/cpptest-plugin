@@ -9,7 +9,7 @@
 
     <groupId>com.thalesgroup.jenkins-ci.plugins</groupId>
     <artifactId>cpptest</artifactId>
-    <version>0.15-SNAPSHOT</version>
+    <version>0.16-ALPHA</version>
     <packaging>hpi</packaging>
     <name>Jenkins Cpptest plugin</name>
     <url>http://wiki.jenkins-ci.org/display/JENKINS/Cpptest+Plugin</url>
@@ -132,7 +132,7 @@
             <plugin>
                 <groupId>org.jenkins-ci.tools</groupId>
                 <artifactId>maven-hpi-plugin</artifactId>
-                <version>1.67</version>
+                <version>1.117</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.sun</groupId>

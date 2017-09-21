@@ -132,4 +132,8 @@ public class CpptestPublisher extends HealthAwarePublisher {
                                              Launcher launcher, BuildListener listener) {
         return null;
     }
+
+    public String getPluginName() {
+        return PLUGIN_NAME;
+    }
 }
