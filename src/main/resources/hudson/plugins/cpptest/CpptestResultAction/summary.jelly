@@ -3,12 +3,12 @@
 	xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form" xmlns:i="jelly:fmt">
 	<t:summary icon="/plugin/cpptest/icons/Cpptest-48x48.png">
-		${it.result.summary}
+		<j:out value="${it.result.summary}" />
 		<ul>
-		${it.result.details}
+		<j:out value="${it.result.details}" />
 	    <j:if test="${it.result.hasError()}">
 	    	<li>
-	    		${%error.message}
+				<j:out value="${%error.message}" />
 	    	</li>
 	    </j:if>
 		</ul>

@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.480</version>
+        <version>2.11</version>
     </parent>
 
     <groupId>com.thalesgroup.jenkins-ci.plugins</groupId>
@@ -46,12 +46,13 @@
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <saxon.version>9.1.0.8</saxon.version>
-        <xunit.plugin.version>1.91</xunit.plugin.version>
-        <analysis.core.plugin.version>1.34</analysis.core.plugin.version>
-        <analysis.test.plugin.version>1.7</analysis.test.plugin.version>
-        <junit.version>4.9</junit.version>
-        <xmlunit.version>1.3</xmlunit.version>
-        <xercesImpl.version>2.8.1</xercesImpl.version>
+        <xunit.plugin.version>1.102</xunit.plugin.version>
+        <analysis.core.plugin.version>1.92</analysis.core.plugin.version>
+        <analysis.test.plugin.version>1.19</analysis.test.plugin.version>
+        <junit.version>4.12</junit.version>
+        <xmlunit.version>1.5</xmlunit.version>
+        <jenkins.version>1.625.3</jenkins.version>
+        <xercesImpl.version>2.11.0</xercesImpl.version>
     </properties>
 
     <dependencies>
