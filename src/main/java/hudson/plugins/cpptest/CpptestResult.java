@@ -1,11 +1,8 @@
 package hudson.plugins.cpptest;
 
 import com.thoughtworks.xstream.XStream;
-import hudson.model.AbstractBuild;
-import hudson.plugins.analysis.core.BuildHistory;
-import hudson.plugins.analysis.core.BuildResult;
-import hudson.plugins.analysis.core.ParserResult;
-import hudson.plugins.analysis.core.ResultAction;
+import hudson.model.Run;
+import hudson.plugins.analysis.core.*;
 import hudson.plugins.cpptest.parser.Warning;
 
 /**
@@ -29,8 +26,8 @@ public class CpptestResult extends BuildResult {
      * @param defaultEncoding the default encoding to be used when reading and parsing files
      * @param result          the parsed result with all annotations
      */
-    public CpptestResult(final AbstractBuild<?, ?> build, final String defaultEncoding, final ParserResult result) {
-        super(build, defaultEncoding, result);
+    public CpptestResult(final Run<?, ?> build, final String defaultEncoding, final ParserResult result) {
+        super(build, new NullBuildHistory(), result, defaultEncoding); // FIXME a null build history isn't a good idea I think, but that's the best I can do for now
     }
 
     /**
@@ -41,9 +38,9 @@ public class CpptestResult extends BuildResult {
      * @param result          the parsed result with all annotations
      * @param history         the plug-in history
      */
-    protected CpptestResult(final AbstractBuild<?, ?> build, final String defaultEncoding, final ParserResult result,
+    protected CpptestResult(final Run<?, ?> build, final String defaultEncoding, final ParserResult result,
                             final BuildHistory history) {
-        super(build, defaultEncoding, result, history);
+        super(build, history, result, defaultEncoding);
     }
 
     /**

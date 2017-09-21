@@ -32,7 +32,7 @@ public class CpptestPublisherTest {
         CpptestResultAction resultAction = fs.getLastBuild().getAction(CpptestResultAction.class);
         assertTrue(resultAction != null);
         // Original input file has exactly 6 annotations to be processed
-        assertTrue(resultAction.getResult().toString().equals("Cpptest Warnings: 6 annotations"));
+        assertTrue(resultAction.getResult().toString().equals("Cpptest Warnings : 6 annotations"));
     }
 
     @Test

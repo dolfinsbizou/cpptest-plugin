@@ -1,6 +1,6 @@
 package hudson.plugins.cpptest;
 
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.plugins.analysis.core.AbstractResultAction;
 import hudson.plugins.analysis.core.HealthDescriptor;
 import hudson.plugins.analysis.core.PluginDescriptor;
@@ -27,7 +27,7 @@ public class CpptestResultAction extends AbstractResultAction<CpptestResult> {
      * @param healthDescriptor health descriptor
      * @param result           the result in this build
      */
-    public CpptestResultAction(final AbstractBuild<?, ?> owner, final HealthDescriptor healthDescriptor, final CpptestResult result) {
+    public CpptestResultAction(final Run<?, ?> owner, final HealthDescriptor healthDescriptor, final CpptestResult result) {
         super(owner, new CpptestHealthDescriptor(healthDescriptor), result);
     }
 
@@ -37,8 +37,8 @@ public class CpptestResultAction extends AbstractResultAction<CpptestResult> {
      * @param owner            the associated build of this action
      * @param healthDescriptor health descriptor
      */
-    public CpptestResultAction(final AbstractBuild<?, ?> owner, final HealthDescriptor healthDescriptor) {
-        super(owner, new CpptestHealthDescriptor(healthDescriptor));
+    public CpptestResultAction(final Run<?, ?> owner, final HealthDescriptor healthDescriptor) {
+        super(owner, new CpptestHealthDescriptor(healthDescriptor), null);
     }
 
     /**

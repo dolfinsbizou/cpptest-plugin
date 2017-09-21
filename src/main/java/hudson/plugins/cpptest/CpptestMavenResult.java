@@ -1,6 +1,6 @@
 package hudson.plugins.cpptest;
 
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.plugins.analysis.core.BuildResult;
 import hudson.plugins.analysis.core.ParserResult;
 import hudson.plugins.analysis.core.ResultAction;
@@ -25,7 +25,7 @@ public class CpptestMavenResult extends CpptestResult {
      * @param defaultEncoding the default encoding to be used when reading and parsing files
      * @param result          the parsed result with all annotations
      */
-    public CpptestMavenResult(final AbstractBuild<?, ?> build, final String defaultEncoding,
+    public CpptestMavenResult(final Run<?, ?> build, final String defaultEncoding,
                               final ParserResult result) {
         super(build, defaultEncoding, result);
     }

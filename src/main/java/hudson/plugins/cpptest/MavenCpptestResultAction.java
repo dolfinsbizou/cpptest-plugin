@@ -1,7 +1,7 @@
 package hudson.plugins.cpptest;
 
 import hudson.maven.*;
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.model.Action;
 import hudson.plugins.analysis.core.HealthDescriptor;
 
@@ -31,7 +31,7 @@ public class MavenCpptestResultAction extends CpptestResultAction implements Agg
      * @param healthDescriptor health descriptor to use
      * @param defaultEncoding  the default encoding to be used when reading and parsing files
      */
-    public MavenCpptestResultAction(final AbstractBuild<?, ?> owner, final HealthDescriptor healthDescriptor,
+    public MavenCpptestResultAction(final Run<?, ?> owner, final HealthDescriptor healthDescriptor,
                                     final String defaultEncoding) {
         super(owner, healthDescriptor);
         this.defaultEncoding = defaultEncoding;
@@ -45,7 +45,7 @@ public class MavenCpptestResultAction extends CpptestResultAction implements Agg
      * @param result           the result in this build
      * @param defaultEncoding  the default encoding to be used when reading and parsing files
      */
-    public MavenCpptestResultAction(final AbstractBuild<?, ?> owner, final HealthDescriptor healthDescriptor,
+    public MavenCpptestResultAction(final Run<?, ?> owner, final HealthDescriptor healthDescriptor,
                                     final String defaultEncoding, final CpptestResult result) {
         super(owner, healthDescriptor, result);
         this.defaultEncoding = defaultEncoding;

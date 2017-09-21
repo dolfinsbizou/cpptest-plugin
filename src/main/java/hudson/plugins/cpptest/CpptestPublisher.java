@@ -2,8 +2,9 @@ package hudson.plugins.cpptest;
 
 import hudson.Launcher;
 import hudson.matrix.MatrixAggregator;
+import hudson.FilePath;
 import hudson.matrix.MatrixBuild;
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.model.AbstractProject;
 import hudson.model.Action;
 import hudson.model.BuildListener;
@@ -13,6 +14,7 @@ import hudson.plugins.analysis.core.HealthAwarePublisher;
 import hudson.plugins.analysis.core.ParserResult;
 import hudson.plugins.analysis.util.PluginLogger;
 import hudson.plugins.cpptest.parser.CpptestParser;
+import jenkins.tasks.SimpleBuildStep;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -25,7 +27,7 @@ import java.io.IOException;
  *         <p/>
  *         NQH: adapt for Cpptest
  */
-public class CpptestPublisher extends HealthAwarePublisher {
+public class CpptestPublisher extends HealthAwarePublisher implements SimpleBuildStep {
     /**
      * Unique ID of this class.
      */
@@ -108,14 +110,16 @@ public class CpptestPublisher extends HealthAwarePublisher {
      * {@inheritDoc}
      */
     @Override
-    public BuildResult perform(final AbstractBuild<?, ?> build, final PluginLogger logger) throws InterruptedException, IOException {
+    public BuildResult perform(Run<?, ?> build, FilePath workspace, PluginLogger logger) throws InterruptedException, IOException {
         logger.log("Collecting Cpptest analysis files...");
 
         FilesParser parser = new FilesParser(logger, StringUtils.defaultIfEmpty(getPattern(), DEFAULT_PATTERN),
                 new CpptestParser(getDefaultEncoding()), isMavenBuild(build));
-        ParserResult project = build.getWorkspace().act(parser);
+        ParserResult project = workspace.act(parser);
         CpptestResult result = new CpptestResult(build, getDefaultEncoding(), project);
-        build.getActions().add(new CpptestResultAction(build, this, result));
+        CpptestResultAction action = new CpptestResultAction(build, this, result);
+        logger.log(action.getResult().toString());
+        build.getActions().add(action);
 
         return result;
     }
