@@ -19,7 +19,7 @@ public class CpptestResult extends BuildResult {
      */
     private static final long serialVersionUID = 2768250056765266658L;
 
-    /**
+    /*new CpptestResultAction(build, this, result)*
      * Creates a new instance of {@link CpptestResult}.
      *
      * @param build           the current build as owner of this action

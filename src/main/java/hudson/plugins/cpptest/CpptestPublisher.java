@@ -14,7 +14,6 @@ import hudson.plugins.analysis.core.HealthAwarePublisher;
 import hudson.plugins.analysis.core.ParserResult;
 import hudson.plugins.analysis.util.PluginLogger;
 import hudson.plugins.cpptest.parser.CpptestParser;
-import jenkins.tasks.SimpleBuildStep;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -27,7 +26,7 @@ import java.io.IOException;
  *         <p/>
  *         NQH: adapt for Cpptest
  */
-public class CpptestPublisher extends HealthAwarePublisher implements SimpleBuildStep {
+public class CpptestPublisher extends HealthAwarePublisher {
     /**
      * Unique ID of this class.
      */
@@ -79,12 +78,13 @@ public class CpptestPublisher extends HealthAwarePublisher implements SimpleBuil
                             final String failedTotalAll, final String failedTotalHigh, final String failedTotalNormal, final String failedTotalLow,
                             final String failedNewAll, final String failedNewHigh, final String failedNewNormal, final String failedNewLow,
                             final boolean canRunOnFailed, final boolean shouldDetectModules, final String pluginName) {
+        //*
         super(healthy, unHealthy, thresholdLimit, defaultEncoding, useDeltaValues,
                 unstableTotalAll, unstableTotalHigh, unstableTotalNormal, unstableTotalLow,
                 unstableNewAll, unstableNewHigh, unstableNewNormal, unstableNewLow,
                 failedTotalAll, failedTotalHigh, failedTotalNormal, failedTotalLow,
                 failedNewAll, failedNewHigh, failedNewNormal, failedNewLow,
-                canRunOnFailed, shouldDetectModules, PLUGIN_NAME);
+                canRunOnFailed, shouldDetectModules, PLUGIN_NAME); //*/
         this.pattern = pattern;
     }
     // Cpptest:ON
@@ -112,9 +112,14 @@ public class CpptestPublisher extends HealthAwarePublisher implements SimpleBuil
     @Override
     public BuildResult perform(Run<?, ?> build, FilePath workspace, PluginLogger logger) throws InterruptedException, IOException {
         logger.log("Collecting Cpptest analysis files...");
+        logger.log(build.getRootDir().toString());
 
+        /*
         FilesParser parser = new FilesParser(logger, StringUtils.defaultIfEmpty(getPattern(), DEFAULT_PATTERN),
-                new CpptestParser(getDefaultEncoding()), isMavenBuild(build));
+                new CpptestParser(getDefaultEncoding()), isMavenBuild(build)); //*/
+        // TODO WIP
+        FilesParser parser = new FilesParser(PLUGIN_NAME, StringUtils.defaultIfEmpty(getPattern(), DEFAULT_PATTERN),
+                new CpptestParser(getDefaultEncoding()), "CpptestPublisher");
         ParserResult project = workspace.act(parser);
         CpptestResult result = new CpptestResult(build, getDefaultEncoding(), project);
         CpptestResultAction action = new CpptestResultAction(build, this, result);
